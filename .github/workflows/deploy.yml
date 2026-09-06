@@ -54,7 +54,7 @@ jobs:
       - name: Install with pip
         run: |
           pip install . -v \
-            -Ccmake.define.FETCHCONTENT_BASE_DIR=${{ runner.temp }}/fetched \
+            -Ccmake.define.FETCHCONTENT_BASE_DIR=/tmp/fetched \
             -Ccmake.define.CMAKE_C_COMPILER_LAUNCHER=ccache \
             -Ccmake.define.CMAKE_CXX_COMPILER_LAUNCHER=ccache
 
@@ -278,7 +278,7 @@ jobs:
       - name: Install
         env:
           CMAKE_BUILD_PARALLEL_LEVEL: 4
-          SKBUILD_CMAKE_DEFINE: FETCHCONTENT_BASE_DIR=${{ runner.temp }}/fetched;CMAKE_C_COMPILER_LAUNCHER=ccache;CMAKE_CXX_COMPILER_LAUNCHER=ccache
+          SKBUILD_CMAKE_DEFINE: FETCHCONTENT_BASE_DIR=/tmp/fetched;CMAKE_C_COMPILER_LAUNCHER=ccache;CMAKE_CXX_COMPILER_LAUNCHER=ccache
         run: pip install --verbose dist/*.tar.gz
 
       - name: Save the compiler cache
